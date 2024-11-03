@@ -2,28 +2,22 @@
 
 tableData
 tablella 5x5
-array, con dentro array, ogni array e' una colonna.
-[[HeaderCol1,line1,line2,line3,line4,line5],[HeaderCol2,line1,line2,line3,line4,line5]];
+array, con dentro array, ogni array e' una riga.
+[[null,data1,data2,data3,data4,data5],[orario,prenotazione1,prenotazione2...]];
 
 */
 
-const giorni = {"12":"martedi"};
-const a = "12";
-
-
-console.log(giorni.a)
-
-
-
 const createTable = () => {
-    let tableData; 
-    let tableBinding = document.getElementById("table");
+    let tableData;
+    let tableBinding = document.getElementById("tableDiv");
     return {
         setData : (newData) => {
             tableData = newData;
         },
-        renderTable: () => {
-            let line = "<table>" + tableData.map((element,index) => "<tr>");
+        render: () => {
+            let line = `<table id="table">` + tableData.map((row,) => { 
+                return "<tr>" + row.map((element) => "<td>" + element + "</td>").join("") + "</tr>"}).join("");
+            tableBinding.innerHTML = line;
         }
     }
 }
