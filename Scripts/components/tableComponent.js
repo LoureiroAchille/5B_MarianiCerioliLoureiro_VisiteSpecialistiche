@@ -15,7 +15,7 @@ const createTable = () => {
             tableData = newData;
         },
         render: () => {
-            let line = `<table id="table">` + tableData.map((row,) => { 
+            let line = `<table class="table">` + tableData.map((row,) => { 
                 return "<tr>" + row.map((element) => "<td>" + element + "</td>").join("") + "</tr>"}).join("");
             tableBinding.innerHTML = line;
         }
