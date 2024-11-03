@@ -8,7 +8,7 @@ array, con dentro array, ogni array e' una colonna.
 */
 
 const giorni = {"12":"martedi"};
-a = "12";
+const a = "12";
 
 
 console.log(giorni.a)
