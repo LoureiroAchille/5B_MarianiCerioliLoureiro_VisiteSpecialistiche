@@ -1,4 +1,3 @@
-const elemform=document.getElementById("form");
 const createForm=(element)=>{
     let data;
     let cuh=console.log;
