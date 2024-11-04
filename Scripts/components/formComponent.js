@@ -21,6 +21,3 @@ const createForm=(element)=>{
         },        
     };
 };
-const form = createForm(elemform);
-/*form.setLabels(["Nome", "Cognome", "Età"]);*/
-form.render();
