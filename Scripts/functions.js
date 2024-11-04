@@ -11,8 +11,11 @@ const show = (div) => {
     hidden += '</class>'
 }
 
-const aggiungiPrenotazione = () => {
+const aggiungiPrenotazione = (datiInput) => {
+    let dataInput = datiInput[0].split("-").join("");
 
+    let chiave = tipologiaCorrente + "-" + dataInput + "-" + datiInput[1];
+    data[chiave] = datiInput[2];
 }
 
 const controllaPrenotazione = (datiInput) => {
@@ -21,17 +24,17 @@ const controllaPrenotazione = (datiInput) => {
 
 const cambiaTipologia = (tipologia) => {
     tipologiaCorrente = tipologia;
-    let datiTabella = [];
-
-    
 
     let temp;
     let datiPrenotazione = [];
-    Object.keys(datiTabella).forEach((prenotazione) => {
+    Object.keys(data).forEach((prenotazione) => {
         temp = prenotazione.split("-");
         if (temp[0] == tipologia){
             datiPrenotazione.push([temp[1],temp[2],datiTabella[prenotazione]]) //[data,orario,nome]
         }
     })
+
+    table.setData(["20241005",8,"Marco"]);
+
     table.render();
 }

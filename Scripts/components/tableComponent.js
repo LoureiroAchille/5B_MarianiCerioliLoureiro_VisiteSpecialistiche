@@ -34,7 +34,10 @@ const createTable = () => {
                 let day = weekDay[index];
                 dateTabella.push(day);
             }        
-            tableData.push(dateTabella);
+            tableData.unshift(dateTabella);
+
+            console.log(tableData);
+            console.log(newData);
 
             newData.map((prenotazione) => {
                 for (let i = 0; i < 5;i++){
@@ -49,9 +52,11 @@ const createTable = () => {
 
         },
         render: () => {
-            let line = `<table class="table">` + tableData.map((row,) => { 
+            /*
+            let line = `<table class="table">` + tableData.map((row) => { 
                 return "<tr>" + row.map((element) => "<td>" + element + "</td>").join("") + "</tr>"}).join("");
             tableBinding.innerHTML = line;
+            */
         }
     }
 }

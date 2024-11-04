@@ -10,7 +10,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
 
     const table = createTable();
     table.setOrari(confData.orariPrenotazione);
-    //table.render();
+    table.render();
 
 
     setInterval(() => {table.render()},5000);

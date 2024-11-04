@@ -1,8 +1,8 @@
+let tipologiaCorrente = "Cardiologia";
+let data = {};
+
 fetch("conf.json").then(r =>r.json()).then(confData => {
 
-
-  let tipologiaCorrente = "Cardiologia";
-  let data = {};
   const upload = () => {
     return new Promise((resolve,reject)=>{
        try{
