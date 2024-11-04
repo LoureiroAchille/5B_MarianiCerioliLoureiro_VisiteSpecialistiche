@@ -1,6 +1,6 @@
 const createForm=(element)=>{
     let data;
-    let cuh=console.log;
+    let callback=console.log;
     return{
         setLabels: (labels) => { data = labels; },
         render: () => { 
@@ -10,12 +10,10 @@ const createForm=(element)=>{
                 }).join('\n')
                 + "<button type='button' id='annulla'>Annulla</button><button type='button' id='prenota'>Prenota</button>";  
             document.querySelector("#Prenota").onclick = () => {
-    //tag 3
                 const result = data.map((name) => {
                     return document.querySelector("#" + name).value;
                 });
-    //biggest
-                cuh(result);
+                callback(result);
             }          
         },        
     };
