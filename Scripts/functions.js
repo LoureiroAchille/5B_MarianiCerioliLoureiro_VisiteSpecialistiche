@@ -16,6 +16,7 @@ const aggiungiPrenotazione = (datiInput) => {
 
     let chiave = tipologiaCorrente + "-" + dataInput + "-" + datiInput[1];
     data[chiave] = datiInput[2];
+
 }
 
 const controllaPrenotazione = (datiInput) => {
@@ -24,17 +25,23 @@ const controllaPrenotazione = (datiInput) => {
 
 const cambiaTipologia = (tipologia) => {
     tipologiaCorrente = tipologia;
+}
 
+const elaboraDatiTabella = () => {
     let temp;
     let datiPrenotazione = [];
     Object.keys(data).forEach((prenotazione) => {
         temp = prenotazione.split("-");
-        if (temp[0] == tipologia){
-            datiPrenotazione.push([temp[1],temp[2],datiTabella[prenotazione]]) //[data,orario,nome]
+        if (temp[0] == tipologiaCorrente){
+            datiPrenotazione.push([temp[1],temp[2],data[prenotazione]]) //[data,orario,nome]
         }
     })
 
-    table.setData(["20241005",8,"Marco"]);
+    console.log(datiPrenotazione);
 
-    table.render();
+    return datiPrenotazione;
+
+    //table.setData(datiPrenotazione);
+
+    //table.render();
 }

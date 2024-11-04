@@ -1,9 +1,12 @@
 let tipologiaCorrente = "Cardiologia";
 let data = {};
 
+let upload;
+let download;
+
 fetch("conf.json").then(r =>r.json()).then(confData => {
 
-  const upload = () => {
+  upload = () => {
     return new Promise((resolve,reject)=>{
        try{
      fetch(confData.url, {
@@ -27,7 +30,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
     })
  }
  
- const download = () => {
+ download = () => {
     return new Promise((resolve,reject)=>{
        try{
        fetch(confData.url, {
