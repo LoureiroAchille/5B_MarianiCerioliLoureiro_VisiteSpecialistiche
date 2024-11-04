@@ -1,5 +1,6 @@
 fetch("conf.json").then(r =>r.json()).then(confData => {
     const buttons = createButtons();
+    buttons.setDatiTipologie(confData.tipologie)
     buttons.render();
 
     const elemform=document.getElementById("formDiv");

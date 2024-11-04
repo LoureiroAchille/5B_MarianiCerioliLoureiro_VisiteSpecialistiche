@@ -3,12 +3,12 @@ const createButtons = () => {
     const bindingDiv = document.getElementById("buttonsDiv");
 
     return {
-        getDatiTipologie: (newTipologie) => {
+        setDatiTipologie: (newTipologie) => {
             tipologie = newTipologie
         },
         render : () => {
-            console.log(tipologie);
-            let line = tipologie.map((tipologia) => {`<button class="button" id="${tipologia}"> ${tipologia} </button>`}).join("");
+            let line = tipologie.map((tipologia) => {return `<button class="button" id="${tipologia}"> ${tipologia} </button>`}).join("");
+            console.log(line);
             bindingDiv.innerHTML = line;
         }
     }
