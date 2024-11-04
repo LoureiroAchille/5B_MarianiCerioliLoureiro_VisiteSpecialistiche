@@ -1,7 +1,7 @@
-const createForm=(cuh)=>{
+const createForm=(elem)=>{
     let data;
     let callback=aggiungiPrenotazione;
-    let element=cuh;
+    let element=elem;
     return{
         setLabels: (labels) => { data = labels; },
         render: () => { 
