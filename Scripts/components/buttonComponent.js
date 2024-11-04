@@ -11,6 +11,7 @@ const createButtons = () => {
             bindingDiv.innerHTML = line;
             tipologie.map((tipologia) => {
                 document.getElementById(tipologia).onclick = () => {
+                    tipologiaCorrente = tipologia;
                     cambiaTipologia(tipologia);
                 }
             })

@@ -22,12 +22,15 @@ const controllaPrenotazione = (datiInput) => {
 const cambiaTipologia = (tipologia) => {
     tipologiaCorrente = tipologia;
     let datiTabella = [];
+
+    
+
     let temp;
+    let datiPrenotazione = [];
     Object.keys(datiTabella).forEach((prenotazione) => {
         temp = prenotazione.split("-");
         if (temp[0] == tipologia){
-            datiTabella.push([temp[1],temp[2]]) //[data,orario]
-
+            datiPrenotazione.push([temp[1],temp[2],datiTabella[prenotazione]]) //[data,orario,nome]
         }
     })
     table.render();
