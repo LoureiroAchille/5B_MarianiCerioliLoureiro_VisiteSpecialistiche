@@ -1,6 +1,6 @@
 const elemform=document.getElementById("form");
 const form = createForm(elemform);
-/*form.setLabels(["Nome", "Cognome", "Età"]);*/
+form.setLabels(["Nome", "Cognome", "Età"]);
 form.render();
 
 const table = createTable();

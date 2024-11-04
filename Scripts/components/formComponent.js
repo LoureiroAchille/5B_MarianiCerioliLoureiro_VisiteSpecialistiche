@@ -2,7 +2,7 @@ const createForm=(element)=>{
     let data;
     let cuh=console.log;
     return{
-        setsetLabels: (labels) => { data = labels; },
+        setLabels: (labels) => { data = labels; },
         render: () => { 
             element.innerHTML = 
                 data.map((name) => {
