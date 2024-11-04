@@ -1,7 +1,6 @@
-url = "boh"
-
-const download = () => {
-    return new Promise((resolve, reject) => {
+fetch("conf.json").then(r =>r.json()).then(confData => {
+  const download = () => {
+    new Promise((resolve, reject) => {
       try {
         fetch(url + "/get",
             {
@@ -14,4 +13,8 @@ const download = () => {
         reject(exception);
       }
     });
-  }  
+  } 
+});
+
+
+ 

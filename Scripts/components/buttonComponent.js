@@ -1,5 +1,16 @@
-fetch("conf.json").then(r =>r.json()).then(data => console.log(data));
-
 const createButtons = () => {
-    const tipologie = data.tipologie;
+    let tipologie;
+    const bindingDiv = document.getElementById("buttonsDiv");
+
+    return {
+        getDatiTipologie: (newTipologie) => {
+            tipologie = newTipologie
+        },
+        render : () => {
+            console.log(tipologie);
+            let line = tipologie.map((tipologia) => {`<button class="button" id="${tipologia}"> ${tipologia} </button>`}).join("");
+            bindingDiv.innerHTML = line;
+        }
+    }
+    
 }
