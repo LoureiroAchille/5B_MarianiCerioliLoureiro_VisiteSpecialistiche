@@ -1,6 +1,6 @@
 const elemform=document.getElementById("formDiv");
 const form = createForm(elemform);
-form.setLabels([["Data","date"], ["Ora","int"], ["Npminativo","str"]]);
+form.setLabels([["Data","date"], ["Ora","int"], ["Nominativo","text"]]);
 form.render();
 
 const table = createTable();
