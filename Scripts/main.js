@@ -5,7 +5,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
 
     const elemform=document.getElementById("formDiv");
     const form = createForm(elemform);
-    form.setLabels([["Data","date"], ["Ora","int"], ["Nominativo","text"]]);
+    form.setLabels([["Data ","date"], ["Ora ","int"], ["Nominativo ","text"]]);
     form.render();
 
     const table = createTable();
