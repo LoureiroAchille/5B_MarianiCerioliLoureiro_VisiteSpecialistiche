@@ -9,12 +9,18 @@ const createForm=(element)=>{
                     return `<div>${name}\n<input id="${name}" type="text" /></div>`;
                 }).join('\n')
                 + "<button type='button' id='annulla'>Annulla</button><button type='button' id='prenota'>Prenota</button>";  
-            document.querySelector("#Prenota").onclick = () => {
+            document.querySelector("#prenota").onclick = () => {
                 const result = data.map((name) => {
                     return document.querySelector("#" + name).value;
                 });
                 callback(result);
             }          
+            document.querySelector("#annulla").onclick = () => {
+                const result = data.map((name) => {
+                    return document.querySelector("#" + name).value;
+                });
+                callback(result);
+            }
         },        
     };
 };
