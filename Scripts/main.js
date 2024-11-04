@@ -1,4 +1,4 @@
-const elemform=document.getElementById("form");
+const elemform=document.getElementById("formDiv");
 const form = createForm(elemform);
 form.setLabels(["Data", "Ora", "Nominativo"]);
 form.render();
