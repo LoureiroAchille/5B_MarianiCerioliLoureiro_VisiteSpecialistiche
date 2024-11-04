@@ -9,10 +9,14 @@ const createButtons = () => {
         render : () => {
             let line = tipologie.map((tipologia) => {return `<button class="button" id="${tipologia}"> ${tipologia} </button>`}).join("");
             bindingDiv.innerHTML = line;
+            document.getElementById(tipologie[0]).style.backgroundColor = "gray";
             tipologie.map((tipologia) => {
                 document.getElementById(tipologia).onclick = () => {
-                    tipologiaCorrente = tipologia;
-                    cambiaTipologia(tipologia);
+                    tipologie.map((altriBottoni) => { document.getElementById(altriBottoni).style.backgroundColor = "white"});
+                    document.getElementById(tipologia).style.backgroundColor = "gray";
+                    datiTabella = cambiaTipologia(tipologia);
+                    table.setData(datiTabella);
+                    table.render();
                 }
             })
         }
@@ -26,16 +30,17 @@ const createForm=(cuh)=>{
         setLabels: (labels) => { data = labels; },
         render: () => { 
             element.innerHTML=data.map((line)=>`<div>${line[0]}<input id="${line[0]}" type="${line[1]}"></div>`).join("");
-            element.innerHTML += `<button type="button" id="annulla"> Annulla </button> <button type="button" id="prenota"> Prenota </button>`;  
-            document.getElementById("prenota").onclick = () => {
+            element.innerHTML += `<button type="button" id="annulla"> Annulla </button> <button type="button" id="invia"> Prenota </button>`;  
+            document.getElementById("invia").onclick = () => {
                 const result = data.map((name) => {return document.getElementById(name[0]).value});
-                aggiungiPrenotazione(result);
-                let datiTabella = elaboraDatiTabella();
-                table.setData(datiTabella);
-                table.render();
+                datiTabella = controllaPrenotazione(result);
+                if (datiTabella != -1){
+                    table.setData(datiTabella);
+                    table.render();
+                }
             }          
             document.getElementById("annulla").onclick = () => {
-                callback(result);
+                hide(document.getElementById("formDiv"))
             }
         },        
     };
@@ -53,48 +58,16 @@ array, con dentro array, ogni array e' una riga.
 
 
 const createTable = () => {
-    const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     let tableData= [];
-    let orari;
     let tableBinding = document.getElementById("tableDiv");
     return {
-        setOrari: (newOrari) => {
-            orari = newOrari;
-        },
         setData : (newData) => {
-
-            tableData = [];
-            orari.map((orario) => {
-                tableData.push([orario,[],[],[],[],[]]);
-            })
-
-            let dateTabella = [""];
-            for (let i = 0; i < 5;i++){
-                let today = new Date();
-                let todayStringISO = today.toISOString().slice(0,10);
-                let index = today.getDay() + i;
-                if (index > 6) index -= 7;
-                let day = weekDay[index];
-                dateTabella.push(day);
-            }        
-            tableData.unshift(dateTabella);
-
-            newData.map((prenotazione) => {
-                for (let i = 0; i < 5;i++){
-                    let today = new Date();
-                    let todayString = today.toISOString().slice(0,10).split("-").join("");
-                    if (prenotazione[0] == todayString){
-                        tableData[orari.indexOf(prenotazione[2])][i] = prenotazione[2];
-                    }
-                }
-            
-            })
-
+            tableData = newData;
         },
         render: () => {
             
             let line = `<table class="table">` + tableData.map((row) => { 
-                return "<tr>" + row.map((element) => "<td>" + element + "</td>").join("") + "</tr>"}).join("");
+                return "<tr>" + row.map((element) => "<td>" + element[0] + "</td>").join("") + "</tr>"}).join("");
             tableBinding.innerHTML = line;
             
         }

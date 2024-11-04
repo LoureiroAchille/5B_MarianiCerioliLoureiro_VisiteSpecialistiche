@@ -50,10 +50,10 @@
     cursor: pointer;
 }
 
-.hide {
-    display: none;
+.hidden{
+    display:none;
 }
 
-.show {
-    display: inline;
+.visible{
+    display:block;
 }
