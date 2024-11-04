@@ -4,7 +4,7 @@ const createForm=(element)=>{
     return{
         setsetLabels: (labels) => { data = labels; },
         render: () => { 
-            parentElement.innerHTML = 
+            element.innerHTML = 
                 data.map((name) => {
                     return `<div>${name}\n<input id="${name}" type="text" /></div>`;
                 }).join('\n')
