@@ -8,9 +8,12 @@ const createButtons = () => {
         },
         render : () => {
             let line = tipologie.map((tipologia) => {return `<button class="button" id="${tipologia}"> ${tipologia} </button>`}).join("");
-            console.log(line);
             bindingDiv.innerHTML = line;
+            tipologie.map((tipologia) => {
+                document.getElementById(tipologia).onclick = () => {
+                    cambiaTipologia(tipologia);
+                }
+            })
         }
     }
-    
 }

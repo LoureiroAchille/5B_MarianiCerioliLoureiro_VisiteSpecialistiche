@@ -11,3 +11,24 @@ const show = (div) => {
     hidden += '</class>'
 }
 
+const aggiungiPrenotazione = () => {
+
+}
+
+const controllaPrenotazione = (datiInput) => {
+    let prenotazione = datiInput[0]
+}
+
+const cambiaTipologia = (tipologia) => {
+    tipologiaCorrente = tipologia;
+    let datiTabella = [];
+    let temp;
+    Object.keys(datiTabella).forEach((prenotazione) => {
+        temp = prenotazione.split("-");
+        if (temp[0] == tipologia){
+            datiTabella.push([temp[1],temp[2]]) //[data,orario]
+
+        }
+    })
+    table.render();
+}

@@ -12,6 +12,7 @@ const createTable = () => {
     let tableBinding = document.getElementById("tableDiv");
     return {
         setData : (newData) => {
+            tableData = []
             tableData = newData;
         },
         render: () => {
