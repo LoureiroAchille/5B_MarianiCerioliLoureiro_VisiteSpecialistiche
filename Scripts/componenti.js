@@ -14,7 +14,8 @@ const createButtons = () => {
                 document.getElementById(tipologia).onclick = () => {
                     tipologie.map((altriBottoni) => { document.getElementById(altriBottoni).style.backgroundColor = "white"});
                     document.getElementById(tipologia).style.backgroundColor = "gray";
-                    datiTabella = cambiaTipologia(tipologia);
+                    cambiaTipologia(tipologia);
+                    datiTabella = elaboraDatiTabella(data);
                     table.setData(datiTabella);
                     table.render();
                 }
@@ -24,25 +25,32 @@ const createButtons = () => {
 }
 
 const createForm=(cuh)=>{
-    let data;
+    let labels;
     let element=cuh;
     return{
-        setLabels: (labels) => { data = labels; },
+        setLabels: (newLabels) => { labels = newLabels; },
         render: () => { 
-            element.innerHTML=data.map((line)=>`<div>${line[0]}<input id="${line[0]}" type="${line[1]}"></div>`).join("");
+            element.innerHTML=labels.map((line)=>`<div>${line[0]}<input id="${line[0]}" type="${line[1]}"></div>`).join("");
             element.innerHTML += `<button type="button" id="annulla"> Annulla </button> <button type="button" id="invia"> Prenota </button>`;  
             document.getElementById("invia").onclick = () => {
-                const result = data.map((name) => {return document.getElementById(name[0]).value});
-                datiTabella = controllaPrenotazione(result);
-                if (datiTabella != -1){
-                    table.setData(datiTabella);
-                    table.render();
-                }
-            }          
+                const result = labels.map((name) => {return document.getElementById(name[0]).value});
+                download().then((dati) => {
+                    data = dati;
+                    if (controllaPrenotazione(result)){
+                        let datiNuovi = aggiungiPrenotazione(result);
+                        data[datiNuovi[0]] = datiNuovi[1];
+                        upload(data).then(() => {
+                            datiTabella = elaboraDatiTabella(data);
+                            table.setData(datiTabella);
+                            table.render();
+                        }); 
+                    }
+                })
+            } 
             document.getElementById("annulla").onclick = () => {
-                hide(document.getElementById("formDiv"))
+                hide(document.getElementById("formDiv"))      
             }
-        },        
+        }   
     };
 };
 
@@ -65,7 +73,6 @@ const createTable = () => {
             tableData = newData;
         },
         render: () => {
-            
             let line = `<table class="table">` + tableData.map((row) => { 
                 return "<tr>" + row.map((element) => "<td>" + element[0] + "</td>").join("") + "</tr>"}).join("");
             tableBinding.innerHTML = line;

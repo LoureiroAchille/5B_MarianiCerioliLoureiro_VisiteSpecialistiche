@@ -14,30 +14,38 @@ buttonPrenota.onclick = () => {
 
 buttonPrecedente.onclick = () => {
     dayOffset -= 5;
-    console.log(dayOffset);
-    datiTabella = elaboraDatiTabella();
-    table.setData(datiTabella);
-    table.render();
+    download().then((dati) => {
+        data = dati;
+        datiTabella = elaboraDatiTabella(data);
+        table.setData(datiTabella);
+        table.render();
+    })
 }
 
 buttonSuccessivo.onclick = () => {
     dayOffset += 5;
-    console.log(dayOffset);
-    datiTabella = elaboraDatiTabella();
-    table.setData(datiTabella);
-    table.render();
+    download().then((dati) => {
+        data = dati;
+        datiTabella = elaboraDatiTabella(data);
+        table.setData(datiTabella);
+        table.render();
+    })
 }
 
 
 fetch("conf.json").then(r =>r.json()).then(confData => {
+
+    //upload({}).then(console.log);
+
     buttons.setDatiTipologie(confData.tipologie)
     buttons.render();
 
-    //download().then(() => {
-        let datiTabella = elaboraDatiTabella();
+    download().then((dati) => {
+        data = dati;
+        let datiTabella = elaboraDatiTabella(data);
         table.setData(datiTabella);
         table.render();
-    //})
+    })
     
 
     form.setLabels([["Data ","date"], ["Ora ","number"], ["Nominativo ","text"]]);
@@ -45,7 +53,12 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
 
     setInterval(() => {
 
-        table.render()
+        download().then((dati) => {
+            data = dati;
+            let datiTabella = elaboraDatiTabella(data);
+            table.setData(datiTabella);
+            table.render();
+        })
 
     },5000);
 });

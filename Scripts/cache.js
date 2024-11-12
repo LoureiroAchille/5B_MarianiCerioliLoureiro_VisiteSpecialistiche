@@ -12,10 +12,10 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
 
   orari = confData.orariPrenotazione;
 
-  upload = () => {
-    return new Promise(()=>{
+  upload = (data) => {
+    return new Promise((resolve)=>{
        try{
-     fetch(confData.url + "set", {
+     fetch(confData.urlCache + "set", {
          headers: {
             'Content-Type': 'application/json',
             'key': confData.token
@@ -26,7 +26,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
             value: data
          })
       }).then(r => r.json())
-      .then(result => {console.log(result);})
+      .then(result => {resolve();})
       }
       catch(error){
        reject(error)
@@ -37,7 +37,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
   download = () => {
     return new Promise((resolve,reject)=>{
       try{
-        fetch(confData.url + "get", {
+        fetch(confData.urlCache + "get", {
           headers: {
             'Content-Type': 'application/json',
             'key': confData.token
@@ -47,7 +47,7 @@ fetch("conf.json").then(r =>r.json()).then(confData => {
             key: "visite"
           })
         }).then(r => r.json())
-        .then(data => {resolve(data);})
+        .then(data => {resolve(data.result);})
         }catch(error) {
           reject(error)
         }
